@@ -186,7 +186,7 @@ fi
 update_dhcp(){
 grep -q net.hostname /system/build.prop && unset UpdateDHCP && return 1
 origin="$(awk -F'>' '/post_origin/{print $2}' /data/data/com.mad.pogodroid/shared_prefs/com.mad.pogodroid_preferences.xml|cut -d'<' -f1)"
-mount -o remount,rw /system
+mount -o rw,remount /system
 if grep -q 'net.hostname' /system/build.prop ;then
  sed -i -e "s/^net.hostname=.*/net.hostname=${origin}/g" /system/build.prop
 else
